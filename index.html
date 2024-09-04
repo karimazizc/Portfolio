@@ -20,11 +20,20 @@
             font-size: 1.5rem;
         }
         
+        .text-2xl {
+            animation: fade 3s ease-in-out infinite;
+        }
+
+        @keyframes fade {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
         .nav-link {
             font-weight: 400;
             transition: color 0.3s ease;
         }
-        
+
         .nav-link:hover {
             color: #fbbf24;
         }
@@ -62,14 +71,32 @@
     <nav class="bg-transparent py-4">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center">
-                <a href="#" class="logo text-white">Karim's Portfolio</a>
-                <div class="hidden md:flex space-x-6">
+                <!-- Logo -->
+                <a href="#" class="logo text-white text-xl lg:text-2xl"> 
+                    <span class="hidden md:inline">Karim's Portfolio</span>
+                    <span class="inline md:hidden">KP</span>
+                </a>
+                <!-- Hamburger Menu Icon -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-6" id="navbar-menu">
                     <a href="#" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="projects.html" class="nav-link">Projects</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </div>
             </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
+            <a href="#" class="block py-2 nav-link">Home</a>
+            <a href="about.html" class="block py-2 nav-link">About</a>
+            <a href="projects.html" class="block py-2 nav-link">Projects</a>
+            <a href="#contact" class="block py-2 nav-link">Contact</a>
         </div>
     </nav>
 
@@ -87,7 +114,7 @@
                 <a href="#" class="cta-button px-6 py-2 rounded-full inline-block">Download CV</a>
             </div>
             <div class="md:w-1/2 animated">
-                <img src="cream.jpeg" alt="Karim's Profile" class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg">
+                <img src="static/images/cream.jpeg" alt="Karim's Profile" class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg">
             </div>
         </div>
     </div>
@@ -97,7 +124,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
                 <div class="feature-icon">🤖</div>
-                <h3 class="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
+                <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
                 <p>Proficient in using advanced AI algorithms for deep insights into data trends and sentiment analysis.</p>
             </div>
             <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
@@ -115,6 +142,16 @@
                 <h3 class="text-xl font-semibold mb-2">Business Analytics</h3>
                 <p>Capable of providing data-driven insights to inform business strategies and decision-making.</p>
             </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">📈</div>
+                <h3 class="text-xl font-semibold mb-2">Financial Analytics</h3>
+                <p>Practised in analysing businesses cashflows from fundamental, technical, and valuation analysis.</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">📈</div>
+                <h3 class="text-xl font-semibold mb-2">Data Engineer</h3>
+                <p>Proficient in programming, data modeling, data pipelines, data infrastructure, and ETL (Extract, Transform, Load).</p>
+            </div>
         </div>
     </div>
 
@@ -125,6 +162,13 @@
     </footer>
 
     <script>
+        
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.style.display = mobileMenu.style.display === 'none' || mobileMenu.style.display === '' ? 'block' : 'none';
+        });
         
         function animateOnScroll() {
             const elements = document.querySelectorAll('.animated');
@@ -148,6 +192,24 @@
                 });
             });
         });
+
+        const texts = [
+            "Data Analyst",
+            "Business Analyst",
+            "Financial Analyst",
+            "Business Intelligence",
+            "Data Scientist",
+        ];
+
+        let index = 0;
+        const textElement = document.querySelector(".text-2xl");
+
+        function changeText() {
+            textElement.textContent = texts[index];
+            index = (index + 1) % texts.length;
+        }
+
+        setInterval(changeText, 3000); // Change text every 3 seconds
     </script>
 </body>
 </html>
