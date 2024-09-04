@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karim's Portfolio - Data Scientist</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #fbbf24;
+        }
+        
+        .cta-button {
+            background-color: #fbbf24;
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .animated.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <nav class="bg-transparent py-4">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="logo text-white">Karim's Portfolio</a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-16">
+        <div class="flex flex-col md:flex-row items-center justify-between">
+            <div class="md:w-1/2 mb-8 md:mb-0 animated">
+                <h1 class="text-4xl font-bold mb-4">Hello, I'm <span class="text-yellow-400">Karim</span></h1>
+                <h2 class="text-2xl font-semibold mb-4">Data Scientist</h2>
+                <p class="mb-6">Passionate about transforming data into actionable insights. Graduating in 2024 with a Bachelor's in Business Analytics from Monash University.</p>
+                <div class="flex space-x-4 mb-6">
+                    <a href="https://www.instagram.com/karimazizc/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a href="#" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-github fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/in/karim-abdul-aziz-chatab-4a0494216/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-linkedin fa-2x"></i></a>
+                </div>
+                <a href="#" class="cta-button px-6 py-2 rounded-full inline-block">Download CV</a>
+            </div>
+            <div class="md:w-1/2 animated">
+                <img src="static/images/cream.jpeg" alt="Karim's Profile" class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg">
+            </div>
+        </div>
+    </div>
+
+    <div id="features" class="container mx-auto px-4 py-16">
+        <h2 class="text-3xl font-bold text-center mb-12">My Skills</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">🤖</div>
+                <h3 class="text-xl font-semibold mb-2">AI-Powered Analysis</h3>
+                <p>Proficient in using advanced AI algorithms for deep insights into data trends and sentiment analysis.</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">🕸️</div>
+                <h3 class="text-xl font-semibold mb-2">Web Scraping</h3>
+                <p>Experienced in real-time web scraping techniques to gather and analyze up-to-date data.</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">📊</div>
+                <h3 class="text-xl font-semibold mb-2">Data Visualization</h3>
+                <p>Skilled in creating customized, insightful reports and visualizations tailored to specific needs.</p>
+            </div>
+            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
+                <div class="feature-icon">👨‍💼</div>
+                <h3 class="text-xl font-semibold mb-2">Business Analytics</h3>
+                <p>Capable of providing data-driven insights to inform business strategies and decision-making.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-transparent py-4">
+        <div class="container mx-auto px-4 text-center text-white">
+            © 2024 Karim's Portfolio. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.animated');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('fade-in');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
