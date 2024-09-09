@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karim's Portfolio - About Me</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
         
@@ -13,7 +15,11 @@
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: #ffffff;
         }
-        
+
+        @keyframes fade {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
         .logo {
             font-weight: 700;
             font-size: 1.5rem;
@@ -27,7 +33,17 @@
         .nav-link:hover {
             color: #fbbf24;
         }
+        .cta-button {
+            background-color: #fbbf24;
+            color: #1a202c;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
         
+        .cta-button:hover {
+            background-color: #f59e0b;
+            transform: translateY(-2px);
+        }
         .animated {
             opacity: 0;
             transform: translateY(20px);
@@ -44,14 +60,32 @@
     <nav class="bg-transparent py-4">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="logo text-white">Karim's Portfolio</a>
-                <div class="hidden md:flex space-x-6">
+                <!-- Logo -->
+                <a href="index.html" class="logo text-white text-xl lg:text-2xl"> 
+                    <span class="hidden md:inline">Karim's Portfolio</span>
+                    <span class="inline md:hidden">Karim's Portfolio</span>
+                </a>
+                <!-- Hamburger Menu Icon -->
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-bars fa-2x"></i>
+                    </button>
+                </div>
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-6" id="navbar-menu">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
                     <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="#contact" class="nav-link">Contact</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
                 </div>
             </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
+            <a href="index.html" class="block py-2 nav-link">Home</a>
+            <a href="about.html" class="block py-2 nav-link">About</a>
+            <a href="projects.html" class="block py-2 nav-link">Projects</a>
+            <a href="contact.html" class="block py-2 nav-link">Contact</a>
         </div>
     </nav>
 
@@ -92,20 +126,6 @@
         </div>
     </footer>
 
-    <script>
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.animated');
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('fade-in');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('load', animateOnScroll);
-    </script>
+    <script src = "script.js" > </script>
 </body>
 </html>
