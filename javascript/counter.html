@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React</title>
+    <style>
+        #app{
+            display: flex;
+            padding: 50%;
+            justify-content: center;
+            font-size: 120px;
+        }
+        #countButton {
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id= "app"></div>
+
+
+    <script type ="text/babel">
+        let x = 0
+        function App(){
+            const [ count , setCount ] = React.useState(0);
+            function updateCount() {
+                setCount(count + 1);
+            }
+            return ( 
+                <div>
+                    <div>{count}</div>    
+                    <button onClick = {updateCount} id = "countButton">Count</button>
+                </div>
+            );
+        };
+        ReactDOM.render(<App />, document.querySelector("#app"))
+         
+    </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React</title>
+    <style>
+        html{
+            font-family: sans-serif;
+        }
+        #app{
+            display: flex;
+            padding-top: 50%;
+            padding-bottom: 50%;
+            text-align: center;
+            justify-content: center;
+            font-size: 30px; 
+        }
+        #countButton {
+            font-size: 30px;
+            
+        }
+    </style>
+</head>
+<h1 style="text-align: center;">Math</h1>
+<body>
+    <div id= "app"></div>
+
+
+    <script type ="text/babel">
+        function App(){
+            // Data
+            const [state, setState] = React.useState({
+                                                        num1: 11,
+                                                        num2: 24,
+                                                        response: "",
+                                                        score: 0,
+                                                        attempt: 0
+                                                    });
+            function updateResponse(event){
+                setState({
+                    ...state,
+                    response: event.target.value
+                });
+            }
+            function inputKeyPress(event){
+                if (event.key === "Enter"){
+                    if (state.num1 * state.num2 === parseInt(state.response)){
+                        setState({ 
+                            ...state,
+                            num1: Math.ceil(Math.random()*20),
+                            num2: Math.ceil(Math.random()*20),
+                            response: "",
+                            score: state.score + 1,
+                            attempt: state.attempt + 1});
+                        // correct 
+                        return (
+                            document.querySelector("#status").innerHTML = "<div style = 'color: green; font-weight: bold;'> Correct</div>"
+                            
+                        )
+                    }else{
+                        setState({ 
+                            ...state,
+                            score: state.score - 1,
+                            attempt: state.attempt + 1});
+                        // incorrect
+                        return (
+                            document.querySelector("#status").innerHTML = "<div style = 'color: red; font-weight: bold;'> Incorrect</div>"
+                           
+                        )
+                    }
+                }
+            }
+            return ( 
+                <div>
+                    <div> {state.num1} X {state.num2}</div>    
+                    <input onKeyPress= {inputKeyPress} onChange= {updateResponse} value= {state.response} />
+                    <div>Score: {state.score}</div>
+                    <div>Attempt: {state.attempt}</div>
+                    <div id ="status"></div>
+                </div>
+            );
+        };
+        ReactDOM.render(<App />, document.querySelector("#app"))
+         
+    </script>
+</body>
+</html>
