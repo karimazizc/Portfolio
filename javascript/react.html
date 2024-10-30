@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src=></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>React</title>
+</head>
+<body>
+    <div id = "app"></div>
+
+
+
+    <button id ="increase"> show</button>
+    <div id ="string"></div>
+    <script type ="text/babel">
+        function App(){
+            const x = 1;
+            const y = 2;
+            return (
+                <div>{x} + {y} = {x + y}</div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.querySelector("#app"));
+  
+        function Hello(props){
+            return (
+                <div id ="hello">Hello, {props.name}!</div>
+            );
+        }        
+
+         
+    </script>
+</body>
+</html>
