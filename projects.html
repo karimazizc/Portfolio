@@ -32,6 +32,7 @@
         
         .project-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: block;
         }
         
         .project-card:hover {
@@ -40,45 +41,112 @@
         }
         
         .animated {
-            opacity: 0;
-            transform: translateY(20px);
+            opacity: 1;
+            transform: translateY(0);
             transition: all 0.5s ease;
         }
         
-        .animated.fade-in {
-            opacity: 1;
-            transform: translateY(0);
+        .filter-container {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
         }
-       .filter-container{
-        display: flex;
-        flex-direction: column;
 
-       }
-       .checkbox{
-        margin: -10px;
-       }
-       #filter-text{
-        font-weight: bold;
-       }
-       
+        .filter-section {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .filter-label {
+            color: #fff;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checkbox:checked {
+            background: #FFD700;
+            border-color: #FFD700;
+        }
+
+        .checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: #000;
+            font-size: 14px;
+            left: 3px;
+            top: -1px;
+        }
+
+        .checkbox-item label {
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .checkbox:hover {
+            border-color: #FFD700;
+        }
+
+        .checkbox-item label:hover {
+            color: #FFD700;
+        }
+
+        #no-results {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .img-placeholder {
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
 </style>
 </head>
 <body class="min-h-screen">
     <nav class="bg-transparent py-4">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center">
-                <!-- Logo -->
                 <a href="index.html" class="logo text-white text-xl lg:text-2xl"> 
                     <span class="hidden md:inline">Karim's Portfolio</span>
                     <span class="inline md:hidden">Karim's Portfolio</span>
                 </a>
-                <!-- Hamburger Menu Icon -->
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-white focus:outline-none">
                         <i class="fas fa-bars fa-2x"></i>
                     </button>
                 </div>
-                <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-6" id="navbar-menu">
                     <a href="index.html" class="nav-link">Home</a>
                     <a href="about.html" class="nav-link">About</a>
@@ -86,7 +154,6 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
         <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
             <a href="index.html" class="block py-2 nav-link">Home</a>
             <a href="about.html" class="block py-2 nav-link">About</a>
@@ -94,26 +161,36 @@
         </div>
     </nav>
 
-    <div class="container mx-auto px-4 py-16">
+    <main class="container mx-auto px-4 py-16">
         <h1 class="text-4xl font-bold text-center text-white mb-8 animated">My Projects</h1>
         <p class="text-xl text-center text-white mb-12 animated">Explore my data science projects and see how I turn data into insights.</p>
         
         <div class="filter-container">
-            <div class="filter-btn"></div> 
-                <span class="btn-text" id ="filter-text">Filter:</span>
-                <input type="checkbox" class = "checkbox">
-                <label for="python"> Python </label>
-                <input type="checkbox" class = "checkbox">
-                <label for="Javascript"> Javascript </label>
-                <input type="checkbox"class = "checkbox">
-                <label for="Javascript"> R </label>
-                <input type="checkbox"class = "checkbox">
-                <label for="Javascript"> Javascript </label>
+            <div class="filter-section">
+                <span class="filter-label">Filter by:</span>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="python" class="checkbox" value="python">
+                        <label for="python">Python</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="javascript" class="checkbox" value="javascript">
+                        <label for="javascript">JavaScript</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="r" class="checkbox" value="r">
+                        <label for="r">R</label>
+                    </div>
+                </div>
             </div>
-        </div> 
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
+        <div id="no-results" class="animated">
+            No projects match the selected filters. Try selecting different technologies.
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="python">
                 <img src="static/images/scrape.png" alt="Web Scraper" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">News and Social Webscraper</h3>
@@ -121,7 +198,7 @@
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">
                 <img src="static/images/stock.png" alt="Stock Analysis" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">Time Series Stock Analysis</h3>
@@ -129,7 +206,7 @@
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="python">
                 <img src="static/images/opencv.jpeg" alt="OpenCV" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">OpenCV: Object Recognition</h3>
@@ -137,35 +214,35 @@
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
-                <img src="static/images/Sentiment.jpeg" alt="Sentiment Analysis" class="w-full h-48 object-cover">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">
+                <img src="static/images/Sentiment.jpeg" alt="Sentiment Analysis" class="w-full h-48 object-cover" >
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">Sentiment Analysis Dashboard</h3>
                     <p class="text-white">Designed and built an interactive dashboard for real-time sentiment analysis of social media data, providing valuable insights for marketing strategies.</p>
                 </div>
             </div>
             
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
-                <a href = "https://rpubs.com/karimazizc/1216301">
-                <img src="static/images/turnover.png" alt="Time Series Analysis: Turnover Rate" class="w-full h-48 object-cover">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-yellow-400 mb-2">Time Series Analysis: Turnover Rate</h3>
-                    <p class="text-white">Designed and built an interactive dashboard for real-time sentiment analysis of social media data, providing valuable insights for marketing strategies.</p>
-                </div></a>
-            </div>
-        
-
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
-                <img src="static/images/life_expect.png" alt="Analyzing Global Life Expectancy" class="w-full h-48 object-cover">
-                <a href="https://rpubs.com/karimazizc/1212325">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-yellow-400 mb-2">Analyzing Global Life Expectancy</h3>
-                    <p class="text-white">Designed and built an interactive dashboard for real-time sentiment analysis of social media data, providing valuable insights for marketing strategies.</p>
-                </div>
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">
+                <a href="https://rpubs.com/karimazizc/1216301">
+                    <img src="static/images/turnover.png" alt="Time Series Analysis: Turnover Rate" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-yellow-400 mb-2">Time Series Analysis: Turnover Rate</h3>
+                        <p class="text-white">Designed and built an interactive dashboard for real-time sentiment analysis of social media data, providing valuable insights for marketing strategies.</p>
+                    </div>
                 </a>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">
+                <a href="https://rpubs.com/karimazizc/1212325">
+                    <img src="static/images/life_expect.png" alt="Analyzing Global Life Expectancy" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-yellow-400 mb-2">Analyzing Global Life Expectancy</h3>
+                        <p class="text-white">Designed and built an interactive dashboard for real-time sentiment analysis of social media data, providing valuable insights for marketing strategies.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">
                 <img src="static/images/uk-commerce.png" alt="Sales E-Commerce Revenue Analysis" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">Sales E-Commerce Revenue Analysis</h3>
@@ -173,7 +250,7 @@
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">                
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="r">                
                 <img src="static/images/prabowo-anies.png" alt="Political Analysis" class="w-full h-48 object-cover">
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">"Prabowo" and "Anies" News Analysis</h3>
@@ -181,19 +258,19 @@
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">                
-                <img src="static/images/tictactoe.png" alt="Tic Tac Toe" class="w-full h-48 object-cover">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="javascript">                
                 <a href="Javascript/tictactoe.html">
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold text-yellow-400 mb-2">Tic Tac Toe</h3>
-                    <p class="text-white">I made a tic tac toe game as a first javascript project.</p>
-                </div>
+                    <img src="static/images/tictactoe.png" alt="Tic Tac Toe" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-yellow-400 mb-2">Tic Tac Toe</h3>
+                        <p class="text-white">I made a tic tac toe game as a first javascript project.</p>
+                    </div>
                 </a>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">                
-                <img src="static/images/snake-game.png" alt="Snake game" class="w-full h-48 object-cover">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="javascript">                
                 <a href="Javascript/snake.html">
+                    <img src="static/images/snake-game.png" alt="Snake game" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-yellow-400 mb-2">Snake Game</h3>
                         <p class="text-white">I made a snake game for a second javascript project.</p>
@@ -201,27 +278,27 @@
                 </a>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">                
-                <img src="" alt="Tetris" class="w-full h-48 object-cover">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="javascript">                
+                <div class="img-placeholder w-full h-48 flex items-center justify-center">
+                    <span>Image Coming Soon</span>
+                </div>
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">Tetris</h3>
                     <p class="text-white">I made a snake game for a third javascript project.</p>
                 </div>
             </div>
 
-            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated">                
-                <img src="#" alt="Mathematics" class="w-full h-48 object-cover">
+            <div class="bg-white bg-opacity-10 rounded-lg shadow-md overflow-hidden project-card animated" data-technologies="javascript">                
+                <div class="img-placeholder w-full h-48 flex items-center justify-center">
+                    <span>Image Coming Soon</span>
+                </div>
                 <div class="p-6">
                     <h3 class="text-xl font-semibold text-yellow-400 mb-2">Mathematics Routine</h3>
                     <p class="text-white">I want to polish my math skills, therefore I made a math website to sharpen my math further.</p>
                 </div>
             </div>
         </div>
-    </div>
-    
-</body>
-</html>
-    </div>
+    </main>
 
     <footer class="bg-transparent py-4 mt-16">
         <div class="container mx-auto px-4 text-center text-white">
@@ -229,6 +306,89 @@
         </div>
     </footer>
 
-    <script src = "script.js"> </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (menuToggle && mobileMenu) {
+                menuToggle.addEventListener('click', function() {
+                    mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
+                });
+            }
+
+            // Project filtering functionality
+            const checkboxes = document.querySelectorAll('.checkbox');
+            const projectCards = document.querySelectorAll('.project-card');
+            const noResultsMessage = document.getElementById('no-results');
+            const projectsGrid = document.getElementById('projects-grid');
+
+            // Initialize all cards as visible
+            projectCards.forEach(card => {
+                card.style.display = 'block';
+            });
+
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', filterProjects);
+            });
+
+            function filterProjects() {
+                const selectedTechnologies = Array.from(checkboxes)
+                    .filter(checkbox => checkbox.checked)
+                    .map(checkbox => checkbox.value);
+
+                let visibleCards = 0;
+
+                projectCards.forEach(card => {
+                    if (selectedTechnologies.length === 0) {
+                        card.style.display = 'block';
+                        visibleCards++;
+                        return;
+                    }
+
+                    const cardTechnologies = card.dataset.technologies?.split(',') || [];
+                    const shouldShow = selectedTechnologies.some(tech => 
+                        cardTechnologies.includes(tech.toLowerCase())
+                    );
+                    
+                    card.style.display = shouldShow ? 'block' : 'none';
+                    if (shouldShow) visibleCards++;
+                });
+
+                // Show/hide no results message
+                noResultsMessage.style.display = visibleCards === 0 ? 'block' : 'none';
+                projectsGrid.style.display = visibleCards === 0 ? 'none' : 'grid';
+            }
+
+            // Handle image loading errors
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    const placeholder = document.createElement('div');
+                    placeholder.className = 'img-placeholder w-full h-48 flex items-center justify-center';
+                    placeholder.innerHTML = '<span>Image Not Available</span>';
+                    this.parentNode.insertBefore(placeholder, this);
+                });
+            });
+
+            // Add fade-in animation for projects
+            const animatedElements = document.querySelectorAll('.animated');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
 </body>
 </html>
