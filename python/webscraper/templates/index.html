@@ -1,25 +1,21 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-<body>
+{% extends 'layout.html' %}
+{% block body %}
+    <style> 
+        
+    </style>
     <h1> webscraping dashboard</h1>
-
+    <h3> Get social media metrics of instagram and youtube </h3>
     <section>
         <div id = "box">
             <div>
                 Social media:
             </div>
-            <input type="text" placeholder="paste link">
-            <button>search</button>
-            <p>Supports youtube, instagram and twitter</p>
-            <div id ="result"> 
-                
-            </div>
+            <form action="/scrape" method = "post">
+                <input autocomplete="off" name="link" placeholder="paste link" type ="text" required>
+                <button type = "submit">Greet</button>
+            </form>
+            <p>Supports youtube, instagram</p>
         </div>
     </section>
-</body>
-</html>
+
+{% endblock %}

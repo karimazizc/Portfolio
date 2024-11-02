@@ -4,23 +4,23 @@ import time
 import re
 import json
 from playwright.sync_api import sync_playwright
-def instagram_scrape(link):
+def instagram_scrape(link) -> list[str]:
     try: 
         soup = BeautifulSoup(requests.get(link, cookies={'CONSENT': 'YES+1'}).text, "html.parser")
         # Load JSON data
         description = soup.find_all('meta',{'name':'description'})
-
         ig_likes = str(description).split()[1].replace("content='", "").replace('content="','')
         ig_comments = str(description).split()[3]
         diff1 = str(description).find(":")
         diff2 =str(description).find('name="description"')
         ig_title = str(description)[diff1:diff2]
         print(f'Title: {ig_title}\nLikes: {ig_likes}\nComments: {ig_comments}\n')
+        return ig_title, ig_likes, ig_comments
     
     except IndexError: 
         print("Sorry, this page isn't available.\n")
 
-def youtube_scrape(link):
+def youtube_scrape(link) -> list[str]:
     if "https://www.youtube.com" not in link:
         print ("invalid link")
         return "invalid link"
@@ -57,7 +57,7 @@ def youtube_scrape(link):
         data_list.append({"URL":link,"Platform": "Youtube", "Likes": yt_likes, "Comments": n_comments, "Shares": ' ', 'Views': ytviews, 'Subscribers':subscriber,'Title': title,'Channel': channel})
 
         print(f'URL: {link}\nTitle: {title}\nViews: {ytviews}\nChannel: {channel}\nSubscribers: {subscriber}\ncomments: {n_comments}\nLikes: {yt_likes}\n')
-        
+        return title, ytviews, channel, subscriber, n_comments, yt_likes
 
     except KeyError:
         
@@ -71,72 +71,12 @@ def youtube_scrape(link):
             data_list.append({"URL":link,"Platform": "Youtube", "Likes": yt_likes, "Comments": n_comments, "Shares": ' ', 'Views': ytviews, 'Subscribers':subscriber,'Title': title,'Channel': channel})
 
             print(f'URL: {link}\nTitle: {title}\nViews: {ytviews}\nChannel: {channel}\nSubscribers: {subscriber}\ncomments: {n_comments}\nLikes: {yt_likes}\n')
-            
+            return title, ytviews, channel, subscriber, n_comments, yt_likes
         
         except Exception:
     ###------------------------------------------YOUTUBE ERROR----------------------------------
             data_list.append({"URL": link,"Platform": "Youtube", "Likes": ' ', "Comments":  ' ', "Shares": ' ', 'Views': ' ', 'Subscribers': ' '})
             print(f"Unsuccessful URL: {link}\n")
-
-def json_metrics(script):
-    json_data = json.loads(script)
-
-    # Navigate to the stats data
-    stats = json_data['__DEFAULT_SCOPE__']['webapp.video-detail']['itemInfo']['itemStruct']['stats']
-    
-    # Extract the requested values
-    digg_count = stats['diggCount']
-    share_count = stats['shareCount']
-    comment_count = stats['commentCount']
-    play_count = stats['playCount']
-    collect_count = stats['collectCount']
-    
-    print(f"diggCount: {digg_count}")
-    print(f"shareCount: {share_count}")
-    print(f"commentCount: {comment_count}")
-    print(f"playCount: {play_count}")
-    print(f"collectCount: {collect_count}")
-
-def tiktok_scrape(link):
-    
-    if "/video/" not in link:
-        print("\n------------------------------------------")
-        print("non-video link")
-        pass
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(link)
-        for _ in range(3):
-            page.mouse.wheel(0,1000)
-        content = page.content()
-        soup = BeautifulSoup(content, "html.parser")
-# Parse the HTML content
-# Find the script tag containing the data
-    script_tag = soup.find('script', id='__UNIVERSAL_DATA_FOR_REHYDRATION__')
-
-    if script_tag:
-        try:
-            # Extract the JSON data from the script tag
-            json_metrics(script_tag.string)
-
-        except KeyError:
-            print("Video link unavailable")
-    else:
-        print("Could not find the required data in the HTML.")
-        print("Second attempt...")
-        time.sleep(2)
-        with sync_playwright() as p:
-            browser = p.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.goto(link)
-            for _ in range(3):
-                page.mouse.wheel(0,1000)
-            content = page.content()
-            soup = BeautifulSoup(content, "html.parser")
-        script_tag = soup.find('script', id='__UNIVERSAL_DATA_FOR_REHYDRATION__')
-        json_metrics(script_tag)
 
 def identify_platform(web:str) -> str:
 
@@ -177,5 +117,5 @@ def identify_platform(web:str) -> str:
     
 if __name__ == "__main__":
     link = input("link: " )
-    print(tiktok_scrape(link))
+    print(youtube_scrape(link))
     
