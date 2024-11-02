@@ -1,0 +1,50 @@
+body{
+    font-family: sans-serif;
+    text-align: center;
+   }
+   #box{
+    width: 500px;
+    height: 150px;
+
+    border: solid 3px;
+
+    border-radius: 20px;
+    font-weight: bold;
+    padding-top: 10px;
+   }
+
+   section{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+   }
+   p{
+    font-size: 8px;
+    color: gray;
+    font-style: italic;
+    font-weight: bold;
+   }
+   input{
+    font-style: italic;
+   }
+   #result{
+    padding-left: 60px;
+
+   }
+   
+   table{
+    border: solid;
+   }
+   th{
+    border: solid;
+    background-color: white;
+    border-color: black;
+   }
+
+   td{
+    border: solid;
+    background-color: white;
+    border-color: black;
+   }
