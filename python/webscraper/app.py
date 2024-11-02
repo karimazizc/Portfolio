@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for
-from socials import youtube_scrape, instagram_scrape, tiktok_scrape, identify_platform
+from flask import Flask, render_template, url_for, request
+from socials import youtube_scrape, instagram_scrape, identify_platform
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,11 +10,46 @@ if __name__ == "__main__":
     app.run(debug=True)
 
 
-@app.route('/scrape') 
-def scrape(link):
-    if identify_platform == "youtube":
-        youtube_scrape(link)
-    elif identify_platform == "instagram":
-        instagram_scrape(link)
-    elif identify_platform == "tiktok":
-        tiktok_scrape(link)
+@app.route('/scrape', methods = ["POST"]) 
+def scrape():
+    link = request.form.get('link', None)
+    print(link)
+    platform = identify_platform(link)
+    if platform == "youtube":
+        title, views, channel, subscriber, comments, likes = youtube_scrape(link)
+        return render_template('scrape.html', 
+                           platform = platform,
+                           link = link, 
+                           title = title, 
+                           views = views, 
+                           channel =channel, 
+                           subscriber = subscriber, 
+                           comments =comments, 
+                           likes= likes)
+    
+    elif platform == "instagram":
+        title, likes, comments = instagram_scrape(link)
+        return render_template('scrape.html', 
+                           platform = platform,
+                           link = link, 
+                           title = title, 
+                           views = "", 
+                           channel ="", 
+                           subscriber = "", 
+                           comments ="", 
+                           likes= likes)
+    elif platform == "unknown":
+        return render_template('scrape.html', 
+                           platform = platform,
+                           link = link, 
+                           title = title, 
+                           views = "", 
+                           channel ="", 
+                           subscriber = "", 
+                           comments ="", 
+                           likes= likes)
+@app.route("/greet", methods = ["POST"])
+def greet():
+    name = request.form.get("name", "world")
+    print(name)
+    return render_template("greet.html", name = name)
