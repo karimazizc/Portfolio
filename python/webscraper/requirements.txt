@@ -1,0 +1,7 @@
+pandas
+requests
+bs4
+playwright
+json
+webdriver_manager
+re
