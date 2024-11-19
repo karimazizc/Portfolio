@@ -1,0 +1,8 @@
+pytest-playwright
+regex
+requests
+bs4
+pandas
+webdriver_manager
+selenium
+uuid
