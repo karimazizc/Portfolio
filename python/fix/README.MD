@@ -1,134 +1,174 @@
-# Using python 3.11.5
+# FIX Protocol Client Implementation
 
-# What is a fix protocol?
+A Python-based FIX (Financial Information eXchange) protocol client implementation that sends and manages orders for trading financial instruments.
 
-Financial Information Exchange
+## Features
 
-a rule set of Financial Information Exchange.
+- FIX Protocol 4.2 compliant
+- Supports market and limit orders
+- Real-time order management
+- Automatic order cancellation
+- Trading statistics calculation
+- Heartbeat monitoring
+- Comprehensive message logging
 
+## Requirements
 
-# FIX is a Key Value Pair protocol
+- Python 3.7+ (This script was created using python version 3.11.5)
+- `simplefix` library
+- Network connection to FIX server
 
-I have a key of 35 = C
+the virtual environment folder `env` already has simplefix installed. User can simply use the environment to run the script without downloading simplefix.
 
-KEY = VALUE 
-Key Value pair information.
+## Usage
 
-Alot of key value pair.
+You can test the script by:
 
-# FIX -> It parses FIX messages
+1. changing the config.ini host and port to:
+```config.ini
+[SERVER]
+host = localhost
+port = 5001
+```
 
-### ---------------------------------
+2. Run the server:
+```bash
+python server.py
+```
 
-# Session Layer:
+3. Run the client:
+```bash
+python client.py
+```
 
-## Logon
+Or use the testing session provided by DTL's server
 
-## Logoff
+1. using the default config.ini host and port:
+```config.ini
+[SERVER]
+host = fix.dytechlab.com
+port = 5100
+```
 
-## Heartbeat
+2. Run the client:
+```bash
+python client.py
+```
 
-## Session Level Reject
+The client will:
+1. Connect to the FIX server
+2. Send logon messge
+3. Start sending random orders for configured symbols
+4. Randomly cancel orders
+5. Print trading statistics when complete
 
-## Business Level Reject
+You can force stop the script by using ctrl + c and this will stop the execution for 5 seconds and then print 
+the resulting trading statistics.
 
-### ----------------------------------
+## Configuration
 
-# Application Layer:
+The config.ini comprises of the script's server, trading and timing. The script will send order by random between 0.1 to 0.5 seconds, with a maximum order of 1000 for MSFT, APPL and BAC along with its reference prices. This all can be customized by the user to align with the user's preferences.
 
-## New Order
+## Message Types Supported
 
-## Order Cancel Request
+| Tag | Type | Description |
+|-----|------|-------------|
+| 35=A | Logon | Session initialization |
+| 35=D | New Order | New single order entry |
+| 35=F | Cancel Request | Order cancellation request |
+| 35=8 | Execution Report | Order execution status |
+| 35=3 | Reject | Order rejection |
+| 35=9 | Cancel Reject | Cancellation rejection |
+| 35=0 | Heartbeat | Connection health check |
 
-## Quote Request
+Additionally, the user can use `describe_value()` method to give them all the key value pairs and their description.
 
-## Mass Quote
+Example usage: 
+--- input --
+`FIXCLIENT().describe_value(35)`
 
-## Mass Quote Cancel
+--- Output ---
+tag 35 is the field's Message Type (MsgType)
+35=A represent Logon
+35=D represent NewOrder or Market Order msg type
+35=F represent Order Cancel Request
+35=0 represent Heartbeat
+35=3 represent Reject Order
+35=8 represent Execution Report
+35=9 represent Order Cancel Reject
 
-## Quote Cancel
+## Order Types
 
-## Exec Report - Fill Notice
+- Market Orders (40=1)
+- Limit Orders (40=2)
 
-## Exec Report - Elimination
+## Order Sides
 
-## Security Definition 
+- Buy (54=1)
+- Sell (54=2)
+- Short Sell (54=5)
 
-## New Order Cross
+## Statistics Tracked
 
-## Order Status Request
+- Total trading volume (USD)
+- Total PNL
+- VWAP by symbol
+- Orders count by symbol
 
-## Security Definition Request
+## Class Structure
 
-# ---------------- EXAMPLE MESSAGE VERSION 4.2
+### Main Classes
 
-LOGON
-Message dump:
-8=FIX.4.2|9=74|35=A|34=978|49=TESTSELL3|52=20190206-16:29:19.208|56=TESTBUY3|98=0|108=60|10=137
+- `FIXClient`: Core FIX protocol implementation
+- `OrderStatus`: Order state tracking
+- `TradeStatistics`: Trading metrics calculation
+- `OrderType`: Order type enumeration
+- `OrderSide`: Order side enumeration
 
-LOGOUT
-Message dump:
-8=FIX.4.2|9=62|35=5|34=977|49=TESTSELL3|52=20190206-16:28:51.518|56=TESTBUY3|10=092
+### Key Methods
 
-# Info
-Standard Header ----
+- `connect()`: Establish server connection
+- `send_new_order()`: Submit new orders
+- `send_cancel_request()`: Cancel existing orders
+- `handle_execution_report()`: Process execution reports
+- `print_statistics()`: Display trading metrics
+- `message_reciever()`: Decode incoming messages
+- `describe_value()`: Describe key value pairs information
 
-8 = Version
+## Error Handling
 
-9 = BodyLength
- 9=110 -> body length is 110
+The client implements comprehensive error handling for:
+- Connection failures
+- Message parsing errors
+- Unknown order IDs
+- Rejected orders/cancellations
+- Invalid messages
 
-11 = OrderID
- 11=1412 = order id of 1412
+## Logging
 
-35 = Message Type 
- 35=A -> log on message
- 35=D -> new order or market order
- 35=F -> order cancel request
- 35=3 -> reject order
- 35=8 -> Execution Report
- 35=9 -> Order Cancel reject
+Messages are logged with clear formatting:
+```
+------------------------SENT-------------------------
+[Message content]
 
-34 = Message Sequence Number
- 34=978 -> Message sequence number, this is the 978 message
+----------------------RECEIVED-----------------------
+[Message content]
+Received [N] messages
+-----------------------ORDER-------------------------
+[New order sent: SYMBOL ORDER_POSITION PRICE @ PRICE or MARKET]
+[Cancel Request sent for order : ORDER ID]
 
-38 = Quantity size
- 38=100 -> order stock quantity of 100
+------------------EXECUTION REPORT-------------------
+[Order ORDER_ID filled/cancelled/rejected PRICE]
+```
 
-40 = Order type
- 40=1 -> market order
- 40=2 -> limit order
- 40=3 -> stop order
- 40=4 -> stop limit order
+## Performance
 
-44 = Price (for limit orders)
+- Uses threading for message handling
+- Efficient message parsing
+- Optimized network communication
+- Performance timing decorator included
 
+## Contact
 
-49 = SenderCompID 
- 49=CLIENTSELL
-
-52 = Datetime string in sending time 
- 52=20190206-16:29:19.208 -> 2019-02-06 at 16:29:19.208
-
-54 = Side order, buy(1) or sell(2)
- 54=1 -> buy stock
- 54=2 -> sell stock
- 54=3 -> buy to cover
- 54=4 -> sell short
-
-55 = Order Ticker
- 55=GOOG -> symbol ticker for google
-
-56 = Destination TargetCompID, identifying reciever
-    this could be another trading system, broker or counterparty
- 56=SERVER -> SERVER is the recipient
-
-10 = Checksum, 3dgit value for message integriy
- 10=092 -> 092 checksum
-
-98 = Password required
- 98=0 -> no password required
-
-108 = Heartbeat Interval
- 108=60 -> heartbeat interval of 60 seconds
-
+For support or questions, contact author karimazizc@gmail.com
