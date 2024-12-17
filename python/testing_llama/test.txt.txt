@@ -1,0 +1,6 @@
+123,352 views 11 May 2019
+In this video | will show you how to use a command line tool called Tesseract to extract text from an image.
+
+https://tesseract-ocr.github.io/tessd...
+
+Video about running Tesseract from Python: + How to use Tesseract OCR in a Python ...

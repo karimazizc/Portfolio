@@ -1,0 +1,8 @@
+pandas
+numpy
+seaborn
+matplotlib
+missingno
+plotly
+scipy
+scikit-learn
