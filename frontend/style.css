@@ -1,0 +1,398 @@
+@import url("https://fonts.cdnfonts.com/css/pp-neue-montreal");
+@import url("https://fonts.cdnfonts.com/css/thegoodmonolith");
+
+:root {
+  --grid-columns: 12;
+  --grid-padding: 2rem;
+  --grid-gutter: 1rem;
+
+  /* Font variables */
+  --font-primary: "PP Neue Montreal", sans-serif;
+  --font-mono: "TheGoodMonolith", sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-bold: 800;
+  --letter-spacing-tight: -0.02em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  color: #eee;
+  overflow-x: hidden;
+  font-family: var(--font-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: var(--grid-gutter);
+  padding: var(--grid-padding);
+  padding-top: 0;
+  padding-bottom: 0;
+  max-width: 100vw;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: var(--grid-gutter);
+  width: 100%;
+  padding: var(--grid-padding);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.5rem;
+  letter-spacing: var(--letter-spacing-tight);
+  align-items: start;
+}
+
+.header-word-left {
+  grid-column: 1 / span 3;
+  text-align: left;
+}
+
+.header-word-center {
+  grid-column: 7 / span 3;
+  text-align: left;
+}
+
+.header-word-right {
+  grid-column: 10 / span 3;
+  text-align: right;
+}
+
+.main-title {
+  grid-column: 1 / span 6; /* Adjust column span to center */
+  align-self: center; /* Center vertically within the grid */
+  font-size: clamp(1rem, 0.75rem + 2vw, 2.25rem);
+  line-height: 1.2;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.canvas-container {
+  grid-column: 7 / span 6;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  align-self: flex-end;
+  padding-bottom: 4rem;
+  opacity: 0; /* Start with opacity 0 for fade-in effect */
+  transition: opacity 0.8s ease-in-out; /* Add transition for fade-in */
+}
+
+.canvas-container.visible {
+  opacity: 1; /* Will be added via JavaScript */
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+  background: black;
+  touch-action: none;
+  cursor: pointer;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  grid-gap: var(--grid-gutter);
+  width: 100%;
+  padding: var(--grid-padding);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  text-transform: uppercase;
+  align-items: end;
+}
+
+.coordinates {
+  grid-column: 1 / span 4;
+  text-align: left;
+}
+
+.mysterious-message {
+  grid-column: 7 / span 6;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
+  .main-title {
+    grid-column: 1 / span 4;
+  }
+
+  .canvas-container {
+    grid-column: 5 / span 8;
+  }
+
+  .header-word-center {
+    grid-column: 5 / span 3;
+  }
+
+  .header-word-right {
+    grid-column: 8 / span 5;
+  }
+
+  .mysterious-message {
+    grid-column: 5 / span 8;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-container,
+  .header,
+  .footer {
+    grid-template-columns: 1fr;
+  }
+
+  .header-word-left,
+  .header-word-center,
+  .header-word-right {
+    grid-column: 1;
+    text-align: left;
+    margin-bottom: 0.5rem;
+  }
+
+  .main-title {
+    grid-column: 1;
+    margin-bottom: 2rem;
+  }
+
+  .canvas-container {
+    grid-column: 1;
+    max-width: 100%;
+  }
+
+  .coordinates,
+  .mysterious-message {
+  grid-column: 1;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+}
+
+
+body {
+  background-color: var(--color-neutral-900);
+  color: var(--color-light);
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+cursor: url("https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b239d7aeb290a31ac5_cursor-default%402x.svg")
+      2 0,
+    auto;
+}
+
+a,
+button {
+  cursor: url("https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b212e6b71494aa67ff_cursor-pointer%402x.svg")
+      12 0,
+    pointer;
+}
+
+.cloneable {
+  padding: var(--container-padding);
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+}
+
+
+.parallax__fade {
+  --color-dark-rgb: 0, 0, 0;
+	background: linear-gradient(to top, rgba(var(--color-dark-rgb), 1) 0%, rgba(var(--color-dark-rgb), 0.738) 19%, rgba(var(--color-dark-rgb), 0.541) 34%, rgba(var(--color-dark-rgb), 0.382) 47%, rgba(var(--color-dark-rgb), 0.278) 56.5%, rgba(var(--color-dark-rgb), 0.194) 65%, rgba(var(--color-dark-rgb), 0.126) 73%, rgba(var(--color-dark-rgb), 0.075) 80.2%, rgba(var(--color-dark-rgb), 0.042) 86.1%, rgba(var(--color-dark-rgb), 0.021) 91%, rgba(var(--color-dark-rgb), 0.008) 95.2%, rgba(var(--color-dark-rgb), 0.002) 98.2%, transparent 100%);
+}
+
+.osmo-icon-svg {
+  width: 8em;
+  position: relative;
+}
+
+.parallax__header {
+  z-index: 2;
+  padding: var(--section-padding) var(--container-padding);
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  display: flex;
+  position: relative;
+}
+
+.parallax {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.parallax__content {
+  padding: var(--section-padding) var(--container-padding);
+  justify-content: center;
+  align-items: center;
+  min-height: 100svh;
+  display: flex;
+  position: relative;
+}
+
+.cover {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax__visuals {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 120%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax__placeholder {
+  z-index: 0;
+  opacity: 0;
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax__layers {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.cover-copy {
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax__fade {
+  z-index: 30;
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 20%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.parallax__black-line-overflow {
+  z-index: 20;
+  background-color: var(--color-black);
+  width: 100%;
+  height: 2px;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+}
+
+.parallax__title {
+  pointer-events: auto;
+  text-align: center;
+  text-transform: none;
+  margin-top: 0;
+  margin-bottom: .1em;
+  margin-right: .075em;
+  font-family: PP Neue Corp Wide, sans-serif;
+  font-size: 11vw;
+  font-weight: 800;
+  line-height: 1;
+  position: relative;
+  color: white
+}
+
+.parallax__radial-gradient {
+  z-index: 10;
+  background-image: radial-gradient(circle farthest-corner at 50% 50%, transparent, var(--color-black));
+  opacity: .5;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  position: fixed;
+  inset: 0;
+}
+
+.parallax__layer-title {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100svh;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.parallax__layer-img {
+  pointer-events: none;
+  object-fit: cover;
+  width: 100%;
+  max-width: none;
+  height: 117.5%;
+  position: absolute;
+  top: -17.5%;
+  left: 0;
+}
+
+.parallax__layer-img.is-third {
+  top: -20%;
+}
+
+@font-face {
+  font-family: 'PP Neue Corp Wide';
+  src: url('https://cdn.prod.website-files.com/671752cd4027f01b1b8f1c7f/6717e399d30a606fed425914_PPNeueCorp-WideUltrabold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('https://cdn.prod.website-files.com/6819ed8312518f61b84824df/6819ed8312518f61b84825ba_PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
