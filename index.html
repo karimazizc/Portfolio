@@ -6,12 +6,20 @@
     <title>Karim's Portfolio - Data Scientist</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="static/css/styles.css">
     
 </head>
 <body class="min-h-screen">
+    <!-- End Next Section -->
+            <link rel="stylesheet" href="static/css/a-hole.css">
+            <script type="module" src="static/js/a-hole.js"></script>
+            <a-hole>
+            <canvas class="js-canvas"></canvas>
+            <div class="aura"></div>
+            <div class="overlay"></div>
+            </a-hole>
     <!-- Fullscreen Hero Section -->
-     <nav class="bg-transparent py-4 z-10 relative w-full">
+     <nav class="py-4 z-10 relative w-full">
             <div class="max-w-6xl mx-auto px-4">
                 <div class="flex justify-between items-center">
                     <!-- Logo -->
@@ -53,7 +61,7 @@
                 <div class="md:w-1/2 mb-8 md:mb-0 animated">
                     <h1 class="text-5xl font-bold mb-4"><span class="text-yellow-400">Karim</span> Abdul Aziz Chatab</h1>
                     <h2 class="text-4xl font-semibold mb-4">Data Scientist</h2>
-                    <p class="mb-6">I write, read, speak, build, design, code, research and publish. I'm particularly good at code and analysis. <span class="text-yellow-400 italic">Let's create something meaningful.</span></p>
+                    <p class="mb-6">I write, read, speak, design, build, research and publish. I'm particularly good at code and analysis. <span class="text-yellow-400 italic">Let's create something meaningful.</span></p>
                     <div class="flex space-x-4 mb-6">
                         <a href="https://www.instagram.com/karimazizc/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-2x"></i></a>
                         <a href="https://github.com/karimazizc" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-github fa-2x"></i></a>
@@ -69,60 +77,55 @@
         </div>
     </div>
     <!-- End Hero Section -->
-
+    
     <!-- Next Section: No animation transition, always visible -->
     <div class="w-full bg-black">
-        <div class="flex flex-col md:flex-row container mx-auto px-4 py-16 gap-8">
+    <div class="w-full">
+        <div class="container mx-auto pt-12">
+            <h2 class="text-1xl italic text-center mb-12">"The sciences are not merely tools for livelihood but are paths to understanding the order of the universe." <span class="text-yellow-400"> — Ibn Khaldun, Muqaddimah</span></h2>
+        </div>  
+        
+        <div class="flex flex-col md:flex-row container mx-auto px-4 pb-16 pt-4 gap-8">
             <!-- Sticky About Section -->
             <div id="about-section" class="md:w-1/2 w-full opacity-100">
-                <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
-                    <h2 class="text-2xl font-semibold text-yellow-400 mb-4">About</h2>
-                    Hi, I'm Karim Abdul Aziz Chatab — a passionate data engineer, problem solver, and explorer of all things data and technology. I recently graduated from Monash University Malaysia with a major in Business Analytics and Finance, and my career journey has taken me from Melbourne to Kuala Lumpur and the UK, working on projects that blend data engineering, analytics, and business strategy.
-
-                    I've always believed that data isn't just numbers — it's stories waiting to be told. Whether I was building backend pipelines and automating data workflows at GEOMOTION, scraping social media and news sentiment data at ENZEE, or deploying deep learning models on AWS during my training at OESON, my focus has been clear: transform raw data into meaningful, actionable insights.
-
-                    My academic path also reflects this curiosity. Through an exchange at Warwick University in the UK, I dove into topics like Lean Startup and Entrepreneurial Finance Ventures, expanding my perspective on how data-driven ideas fuel modern business innovation.
-
-                    What excites me most is the intersection of data engineering, web scraping, cloud infrastructure, and natural language processing. I thrive on challenges that require not just technical skills, but creative thinking and clear communication. From visualizing data pipelines to leading interns in data storytelling, I aim to make complex systems understandable and impactful.
-
-                    This portfolio is a glimpse into the projects, skills, and ideas I've built along the way. If you're as passionate about data, technology, and innovation as I am — let's connect and create something extraordinary.
-                </div>
+                
+                <h2 class="text-2xl font-semibold text-yellow-400 mb-4">About Me</h2>
+                I just graduated recently from Monash University majoring in Business Analytics and Finance. 
+                I am a <span class="text-yellow-400 font-semibold"> former data engineer</span> at Geomotion and currently building <span class="text-green-400 font-semibold underline"><a href="https://www.whisttle.com">Whisttle</a></span> on the side with my colleagues.
+                As of right now, I am looking for a full-time position in a <span class="text-yellow-400 font-semibold">data related role</span>.
+                Building things has always been my passion, and I love to create things that are meaningful and impactful.
+                You can navigate through my portfolio to see some of the projects I have worked on. 
+                I've went to <span class="underline"><span class="text-blue-700">study in </span> the <span class="text-red-700">United Kingdom</span> </span>under an exchange program at <span class="text-purple-700 font-semibold"><a href="https://warwick.ac.uk/">Warwick University</a></span>, where I learn about financial analytics, econometrics, exchange rate forecasting, and entrepreneurship.
             </div>
             <!-- Scrollable Side Content -->
             <div class="md:w-1/2 w-full">
                 <div class="free-scroll-down">
-                    <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
+                    <div class="p-8 mb-8">
                         <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Skills & Technologies</h2>
                         <ul class="list-disc pl-5">
-                            <li>Python, SQL, R</li>
-                            <li>Data Visualization (Tableau, Power BI)</li>
+                            <li>Python, SQL, R, Javascript, Swift, HTML, CSS</li>
+                            <li>Django, Redis, Celery, Selenium, Playwright, BeautifulSoup, Shiny</li>
+                            <li>Data Visualization (Tableau, R Shiny, Matplotlib)</li>
                             <li>Machine Learning & Deep Learning</li>
                             <li>Web Scraping & Data Mining</li>
                             <li>Cloud Platforms (AWS, GCP)</li>
-                            <li>Big Data Technologies (Hadoop, Spark)</li>
                         </ul>
                     </div>
-                    <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
+                    <div class="p-8 mb-8">
                         <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Education</h2>
-                        <p><strong>Monash University Malaysia</strong> - Bachelor of Business Analytics and Finance (2023)</p>
-                        <p><strong>Warwick University, UK</strong> - Exchange Program in Business Analytics (2022)</p>
+                        <p><strong>Monash University, AUS & MY</strong> - Bachelor of Business and Commerce - Majoring in Business Analytics and Finance (2025)</p>
+                        <p><strong>Warwick University, UK</strong> - Exchange Program in 2023</p>
                     </div>
 
                 </div>
             </div>
         </div>
-    </div>
-    <div class="w-full bg-black">
+    
+    <div class="w-full">
         <div class="flex flex-col md:flex-row container mx-auto px-4 py-16 gap-8">
-            <!-- End Next Section -->
-            <link rel="stylesheet" href="a-hole.css">
-            <script src="a-hole.js"></script>
-            <a-hole>
-            <canvas class="js-canvas"></canvas>
-            <div class="aura"></div>
-            <div class="overlay"></div>
-            </a-hole><!-- .a-hole -->
+            
         </div>
+    </div>
     </div>
     <script>
         // Removed scroll event for about-section animation
@@ -145,9 +148,10 @@
             © 2024 Karim's Portfolio. All rights reserved.
         </div>
     </footer>
+    </div>
     
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="background.js"></script>
+    <script src="static/js/background.js"></script>
 
     <script>
         

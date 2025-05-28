@@ -1,0 +1,211 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+:root {
+    --primary-color: #1a202c;
+    --secondary-color: #fbbf24;
+    --accent-color: #f59e0b;
+    --text-color: hsl(0, 0%, 94%);
+    --background-color: rgba(10, 10, 30, 0.9);
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: rgba(10, 10, 30, 0.9);
+    color: #f0f0f0;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.text-4xl {
+    animation: fade 3s ease-in-out infinite;
+}
+
+@keyframes fade {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+.nav-link {
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.cta-button {
+    background-color: var(--secondary-color);
+    color: #1a202c;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #f59e0b;
+    transform: translateY(-2px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.animated {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.animated.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+    .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color);
+}
+
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: block;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.animated {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.5s ease;
+}
+
+.filter-container {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.filter-section {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-label {
+    color: #fff;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.checkbox {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    position: relative;
+}
+
+.checkbox:checked {
+    background: #FFD700;
+    border-color: #FFD700;
+}
+
+.checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    color: #000;
+    font-size: 14px;
+    left: 3px;
+    top: -1px;
+}
+
+.checkbox-item label {
+    color: #fff;
+    cursor: pointer;
+}
+
+.checkbox:hover {
+    border-color: #FFD700;
+}
+
+.checkbox-item label:hover {
+    color: #FFD700;
+}
+
+#no-results {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.img-placeholder {
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+.grid-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+    pointer-events: none;
+}
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    
+}
+
+/* Ensure overlays do not block pointer events */
+a-hole,
+a-hole .aura,
+a-hole .overlay,
+a-hole canvas {
+    pointer-events: none !important;
+}
+
