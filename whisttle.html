@@ -7,89 +7,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
     <link rel="stylesheet" href="static/css/styles.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-            text-align: center;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-        
-        .text-2xl {
-            animation: fade 3s ease-in-out infinite;
-        }
-
-        @keyframes fade {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .nav-link {
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-
-        .nav-link:hover {
-            color: #fbbf24;
-        }
-        
-        .cta-button {
-            background-color: #fbbf24;
-            color: #1a202c;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: #f59e0b;
-            transform: translateY(-2px);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .animated {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .animated.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        #hero{
-            font-weight: bold;
-            justify-content: center;
-        }
-
-        #whisttle{
-            font-size: 36px; 
-            transition: all 0.3s ease;
-        }
-
-        #whisttle:hover{
-            color: #fbbf24;
-            transform: translateY(-2px);
-        }
-        
-        #content{
-            padding: 0px 50px 0px 50px;
-        }
-    </style>
+    
 </head>
 <body class="min-h-screen">
+    <div class="grid-background"></div>
     <nav class="bg-transparent py-4">
         <div class="max-w-6xl mx-auto px-4">
             <div class="flex justify-between items-center">
@@ -106,25 +27,24 @@
                 </div>
                 <!-- Navigation Links -->
                 <div class="hidden md:flex space-x-6" id="navbar-menu">
-                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">home</a>
                     <a href="blog.html" class="nav-link">blog</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
+                    <a href="projects.html" class="nav-link">projects</a>
                     <a href="whisttle.html" class="nav-link" style="color: var(--secondary-color);">whisttle</a>
                 </div>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
-            <a href="index.html" class="block py-2 nav-link">Home</a>
+            <a href="index.html" class="block py-2 nav-link">home</a>
             <a href="blog.html" class="block py-2 nav-link">blog</a>
-            <a href="projects.html" class="block py-2 nav-link">Projects</a>
+            <a href="projects.html" class="block py-2 nav-link">projects</a>
             <a href="whisttle.html" class="block py-2 nav-link" style="color: var(--secondary-color);">whisttle</a>
         </div>
     </nav>
-
-   <div id = "hero-container">
+    <div id = "hero-container" class ="text-center">
     <div id = "hero" >
-        <div id = "whisttle">
+        <div id = "whisttle" class="text-3xl font-bold mb-4">
             <a href="https://www.whisttle.com">
                 Whisttle.com
             </a>     
@@ -140,7 +60,7 @@
     <br>
     Back-End: Django, PostgreSQL, llama, playwright, tensorflow, hostinger, apache spark and kafka
 </div>
-
+    <div class="text-center">
     <div style="font-size: 28px; font-weight: bold;  padding: 50px 50px 10px 50px;">
         What is whisttle?
     </div>
@@ -149,4 +69,10 @@
     <br>
         No, we're not planning to replace jobs with AI. If anything, we're planning to accelerate work done by researchers through this tool.
     </div>
+    </div>
+    <footer class="bg-transparent py-4 mt-16">
+        <div class="container mx-auto px-4 text-center text-white">
+            © 2024 Karim's Portfolio. All rights reserved.
+        </div>
+    </footer>
     </body>
