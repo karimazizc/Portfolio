@@ -6,162 +6,148 @@
     <title>Karim's Portfolio - Data Scientist</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-        }
-        
-        .logo {
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-        
-        .text-2xl {
-            animation: fade 3s ease-in-out infinite;
-        }
-
-        @keyframes fade {
-            0%, 100% { opacity: 0; }
-            50% { opacity: 1; }
-        }
-
-        .nav-link {
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: #fbbf24;
-        }
-        
-        .cta-button {
-            background-color: #fbbf24;
-            color: #1a202c;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        
-        .cta-button:hover {
-            background-color: #f59e0b;
-            transform: translateY(-2px);
-        }
-        
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .animated {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-        
-        .animated.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body class="min-h-screen">
-    <nav class="bg-transparent py-4">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex justify-between items-center">
-                <!-- Logo -->
-                <a href="index.html" class="logo text-white text-xl lg:text-2xl"> 
-                    <span class="hidden md:inline">Karim's Portfolio</span>
-                    <span class="inline md:hidden">Karim's Portfolio</span>
-                </a>
-                <!-- Hamburger Menu Icon -->
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-white focus:outline-none">
-                        <i class="fas fa-bars fa-2x"></i>
-                    </button>
-                </div>
-                <!-- Navigation Links -->
-                <div class="hidden md:flex space-x-6" id="navbar-menu">
-                    <a href="index.html" class="nav-link">Home</a>
-                    <a href="about.html" class="nav-link">About</a>
-                    <a href="projects.html" class="nav-link">Projects</a>
-                    <a href="whisttle.html" class="nav-link">Whisttle</a>
-                    <a href="frontend/index.html" class="nav-link">Web Development</a>
+    <!-- Fullscreen Hero Section -->
+     <nav class="bg-transparent py-4 z-10 relative w-full">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-between items-center">
+                    <!-- Logo -->
+                    <a href="index.html" class="logo text-white text-xl lg:text-2xl"> 
+                        <span class="hidden md:inline">Karim's Portfolio</span>
+                        <span class="inline md:hidden">Karim's Portfolio</span>
+                    </a>
+                    <!-- Hamburger Menu Icon -->
+                    <div class="md:hidden flex items-center">
+                        <button id="menu-toggle" class="text-white focus:outline-none block">
+                            <i class="fas fa-bars fa-2x"></i>
+                        </button>
+                    </div>
+                    <!-- Navigation Links -->
+                    <div class="hidden md:flex space-x-6" id="navbar-menu">
+                        <a href="index.html" class="nav-link" style="color: var(--secondary-color);">home</a>
+                        <a href="blog.html" class="nav-link">blog</a>
+                        <a href="projects.html" class="nav-link">projects</a>
+                        <a href="whisttle.html" class="nav-link">whisttle</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
-            <a href="index.html" class="block py-2 nav-link">Home</a>
-            <a href="about.html" class="block py-2 nav-link">About</a>
-            <a href="projects.html" class="block py-2 nav-link">Projects</a>
-            <a href="whisttle.html" class="nav-link">Whisttle</a>
-        </div>
-    </nav>
-
-    <div class="container mx-auto px-4 py-16">
-        <div class="flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 mb-8 md:mb-0 animated">
-                <h1 class="text-4xl font-bold mb-4">Hello, I'm <span class="text-yellow-400">Karim</span></h1>
-                <h2 class="text-2xl font-semibold mb-4">Data Scientist</h2>
-                <p class="mb-6">Passionate about transforming data into actionable insights. Graduating in 2024 with a Bachelor's in Business Analytics from Monash University.</p>
-                <div class="flex space-x-4 mb-6">
-                    <a href="https://www.instagram.com/karimazizc/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a href="https://github.com/karimazizc" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-github fa-2x"></i></a>
-                    <a href="https://www.linkedin.com/in/karim-abdul-aziz-chatab-4a0494216/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-linkedin fa-2x"></i></a>
-                </div>
-                <a href="static/karim_latestCV.pdf" class="cta-button px-6 py-2 rounded-full inline-block">Download CV</a>
-                <a href="projects.html" class="cta-button px-6 py-2 rounded-full inline-block">View Projects</a>
+            <!-- Mobile Menu -->
+            <div class="md:hidden px-4 pt-2 pb-4" id="mobile-menu" style="display: none;">
+                <a href="index.html" class="block py-2 nav-link">home</a>
+                <a href="blog.html" class="block py-2 nav-link">blog</a>
+                <a href="projects.html" class="block py-2 nav-link">projects</a>
+                <a href="whisttle.html" class="nav-link">whisttle</a>
             </div>
-            <div class="md:w-1/2 animated">
-                <img src="static/images/cream.jpeg" alt="Karim's Profile" class="rounded-full w-64 h-64 object-cover mx-auto shadow-lg">
+        </nav>
+    <div class="relative min-h-screen flex flex-col justify-center items-center bg-transparent" id="hero-section">
+        <div class="absolute inset-0 z-0">
+            <div class="grid-background"></div>
+            <div id="particles-js"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 py-16 z-10 relative flex-1 flex items-center">
+            <div class="flex flex-col md:flex-row items-center justify-between w-full">
+                <div class="md:w-1/2 mb-8 md:mb-0 animated">
+                    <h1 class="text-5xl font-bold mb-4"><span class="text-yellow-400">Karim</span> Abdul Aziz Chatab</h1>
+                    <h2 class="text-4xl font-semibold mb-4">Data Scientist</h2>
+                    <p class="mb-6">I write, read, speak, build, design, code, research and publish. I'm particularly good at code and analysis. <span class="text-yellow-400 italic">Let's create something meaningful.</span></p>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="https://www.instagram.com/karimazizc/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-instagram fa-2x"></i></a>
+                        <a href="https://github.com/karimazizc" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-github fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/in/karim-abdul-aziz-chatab-4a0494216/" target="_blank" class="text-white hover:text-yellow-400"><i class="fab fa-linkedin fa-2x"></i></a>
+                    </div>
+                    <a href="static/karim_latestCV.pdf" class="cta-button px-6 py-2 rounded-full inline-block">Download CV</a>
+                    <a href="projects.html" class="cta-button px-6 py-2 rounded-full inline-block">View Projects</a>
+                </div>
+                <div class="md:w-1/2 animated flex justify-center">
+                    <img src="static/images/karim.jpg" alt="Karim's Profile" class="rounded-full w-80 h-80 object-cover mx-auto shadow-lg">
+                </div>
             </div>
         </div>
     </div>
+    <!-- End Hero Section -->
 
-    <div id="features" class="container mx-auto px-4 py-16">
-        <h2 class="text-3xl font-bold text-center mb-12">My Skills</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">🤖</div>
-                <h3 class="text-xl font-semibold mb-2">Machine Learning</h3>
-                <p>Proficient in using advanced AI algorithms for deep insights into data trends and sentiment analysis.</p>
+    <!-- Next Section: No animation transition, always visible -->
+    <div class="w-full bg-black">
+        <div class="flex flex-col md:flex-row container mx-auto px-4 py-16 gap-8">
+            <!-- Sticky About Section -->
+            <div id="about-section" class="md:w-1/2 w-full opacity-100">
+                <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
+                    <h2 class="text-2xl font-semibold text-yellow-400 mb-4">About</h2>
+                    Hi, I'm Karim Abdul Aziz Chatab — a passionate data engineer, problem solver, and explorer of all things data and technology. I recently graduated from Monash University Malaysia with a major in Business Analytics and Finance, and my career journey has taken me from Melbourne to Kuala Lumpur and the UK, working on projects that blend data engineering, analytics, and business strategy.
+
+                    I've always believed that data isn't just numbers — it's stories waiting to be told. Whether I was building backend pipelines and automating data workflows at GEOMOTION, scraping social media and news sentiment data at ENZEE, or deploying deep learning models on AWS during my training at OESON, my focus has been clear: transform raw data into meaningful, actionable insights.
+
+                    My academic path also reflects this curiosity. Through an exchange at Warwick University in the UK, I dove into topics like Lean Startup and Entrepreneurial Finance Ventures, expanding my perspective on how data-driven ideas fuel modern business innovation.
+
+                    What excites me most is the intersection of data engineering, web scraping, cloud infrastructure, and natural language processing. I thrive on challenges that require not just technical skills, but creative thinking and clear communication. From visualizing data pipelines to leading interns in data storytelling, I aim to make complex systems understandable and impactful.
+
+                    This portfolio is a glimpse into the projects, skills, and ideas I've built along the way. If you're as passionate about data, technology, and innovation as I am — let's connect and create something extraordinary.
+                </div>
             </div>
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">🕸️</div>
-                <h3 class="text-xl font-semibold mb-2">Web Scraping</h3>
-                <p>Experienced in real-time web scraping techniques to gather and analyze up-to-date data.</p>
-            </div>
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">📊</div>
-                <h3 class="text-xl font-semibold mb-2">Data Visualization</h3>
-                <p>Skilled in creating customized, insightful reports and visualizations tailored to specific needs.</p>
-            </div>
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">👨‍💼</div>
-                <h3 class="text-xl font-semibold mb-2">Business Analytics</h3>
-                <p>Capable of providing data-driven insights to inform business strategies and decision-making.</p>
-            </div>
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">📈</div>
-                <h3 class="text-xl font-semibold mb-2">Financial Analytics</h3>
-                <p>Practised in analysing businesses cashflows from fundamental, technical, and valuation analysis.</p>
-            </div>
-            <div class="bg-white bg-opacity-10 rounded-lg p-6 animated">
-                <div class="feature-icon">👷‍♂️</div>
-                <h3 class="text-xl font-semibold mb-2">Data Engineer</h3>
-                <p>Proficient in programming, data modeling, data pipelines, data infrastructure, and ETL (Extract, Transform, Load).</p>
+            <!-- Scrollable Side Content -->
+            <div class="md:w-1/2 w-full">
+                <div class="free-scroll-down">
+                    <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Skills & Technologies</h2>
+                        <ul class="list-disc pl-5">
+                            <li>Python, SQL, R</li>
+                            <li>Data Visualization (Tableau, Power BI)</li>
+                            <li>Machine Learning & Deep Learning</li>
+                            <li>Web Scraping & Data Mining</li>
+                            <li>Cloud Platforms (AWS, GCP)</li>
+                            <li>Big Data Technologies (Hadoop, Spark)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white bg-opacity-20 rounded-lg p-8 mb-8">
+                        <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Education</h2>
+                        <p><strong>Monash University Malaysia</strong> - Bachelor of Business Analytics and Finance (2023)</p>
+                        <p><strong>Warwick University, UK</strong> - Exchange Program in Business Analytics (2022)</p>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-
+    <div class="w-full bg-black">
+        <div class="flex flex-col md:flex-row container mx-auto px-4 py-16 gap-8">
+            <!-- End Next Section -->
+            <link rel="stylesheet" href="a-hole.css">
+            <script src="a-hole.js"></script>
+            <a-hole>
+            <canvas class="js-canvas"></canvas>
+            <div class="aura"></div>
+            <div class="overlay"></div>
+            </a-hole><!-- .a-hole -->
+        </div>
+    </div>
+    <script>
+        // Removed scroll event for about-section animation
+    </script>
+    <style>
+        #hero-section {
+            min-height: 100vh;
+            height: 100dvh;
+            position: relative;
+            overflow: hidden;
+        }
+        #about-section {
+            transition: opacity 1s;
+        }
+    </style>
+    
+   
     <footer class="bg-transparent py-4">
         <div class="container mx-auto px-4 text-center text-white">
             © 2024 Karim's Portfolio. All rights reserved.
         </div>
     </footer>
+    
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="background.js"></script>
 
     <script>
         
@@ -204,7 +190,7 @@
         ];
 
         let index = 0;
-        const textElement = document.querySelector(".text-2xl");
+        const textElement = document.querySelector(".text-4xl");
 
         function changeText() {
             textElement.textContent = texts[index];
@@ -213,5 +199,6 @@
 
         setInterval(changeText, 3000); // Change text every 3 seconds
     </script>
+    
 </body>
 </html>
