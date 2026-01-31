@@ -1,0 +1,320 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #000000;
+  --foreground: #FFFFFF;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #404040;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #525252;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* TipTap Editor Styles */
+.tiptap {
+  min-height: 300px;
+  outline: none;
+}
+
+.tiptap p {
+  margin: 1em 0;
+}
+
+.tiptap h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.tiptap h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.83em 0;
+}
+
+.tiptap h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+.tiptap ul,
+.tiptap ol {
+  padding-left: 1.5em;
+  margin: 1em 0;
+}
+
+.tiptap ul {
+  list-style-type: disc;
+}
+
+.tiptap ol {
+  list-style-type: decimal;
+}
+
+.tiptap blockquote {
+  border-left: 3px solid #404040;
+  padding-left: 1em;
+  margin: 1em 0;
+  font-style: italic;
+  color: #a3a3a3;
+}
+
+.tiptap code {
+  background-color: #262626;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.tiptap pre {
+  background-color: #171717;
+  padding: 1em;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.tiptap pre code {
+  background: none;
+  padding: 0;
+}
+
+.tiptap a {
+  color: #60a5fa;
+  text-decoration: underline;
+}
+
+.tiptap a:hover {
+  color: #93c5fd;
+}
+
+.tiptap hr {
+  border: none;
+  border-top: 1px solid #404040;
+  margin: 2em 0;
+}
+
+/* Placeholder style */
+.tiptap p.is-editor-empty:first-child::before {
+  color: #525252;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Resizable Image Styles */
+.tiptap .resizable-media-container {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  margin: 1em 0;
+  line-height: 0;
+}
+
+.tiptap .resizable-media-container.ProseMirror-selectednode {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.tiptap .resizable-media-container img,
+.tiptap .resizable-media-container video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.tiptap .resizable-media-container .resize-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #60a5fa;
+  border: 2px solid #000;
+  border-radius: 50%;
+  cursor: nwse-resize;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.tiptap .resizable-media-container:hover .resize-handle,
+.tiptap .resizable-media-container.ProseMirror-selectednode .resize-handle {
+  opacity: 1;
+}
+
+.tiptap .resizable-media-container .resize-handle.top-left {
+  top: -6px;
+  left: -6px;
+  cursor: nwse-resize;
+}
+
+.tiptap .resizable-media-container .resize-handle.top-right {
+  top: -6px;
+  right: -6px;
+  cursor: nesw-resize;
+}
+
+.tiptap .resizable-media-container .resize-handle.bottom-left {
+  bottom: -6px;
+  left: -6px;
+  cursor: nesw-resize;
+}
+
+.tiptap .resizable-media-container .resize-handle.bottom-right {
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+}
+
+/* Alignment classes */
+.tiptap .resizable-media-container[data-align="left"] {
+  float: left;
+  margin-right: 1em;
+}
+
+.tiptap .resizable-media-container[data-align="center"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tiptap .resizable-media-container[data-align="right"] {
+  float: right;
+  margin-left: 1em;
+}
+
+/* YouTube/Video embed styles */
+.tiptap .youtube-video {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 1em 0;
+}
+
+.tiptap .youtube-video.ProseMirror-selectednode {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+.tiptap .youtube-video iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+}
+
+/* Custom video element styles */
+.tiptap video {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1em 0;
+}
+
+.tiptap video.ProseMirror-selectednode {
+  outline: 2px solid #60a5fa;
+  outline-offset: 2px;
+}
+
+/* Image upload progress */
+.tiptap .image-uploading {
+  position: relative;
+  opacity: 0.6;
+}
+
+.tiptap .image-uploading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+  border: 2px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Media toolbar */
+.media-toolbar {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 4px 8px;
+  background: #171717;
+  border: 1px solid #262626;
+  border-radius: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 10;
+}
+
+.tiptap .resizable-media-container:hover .media-toolbar,
+.tiptap .resizable-media-container.ProseMirror-selectednode .media-toolbar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.media-toolbar button {
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: #a3a3a3;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.media-toolbar button:hover {
+  background: #262626;
+  color: #fff;
+}
+
+.media-toolbar button.active {
+  background: #404040;
+  color: #fff;
+}
